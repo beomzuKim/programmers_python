@@ -1,3 +1,4 @@
+# 
 def solution(L, x):
     
     low, up = 0, len(L) - 1
