@@ -1,4 +1,4 @@
-# 
+# 이진탐색 구현
 def solution(L, x):
     
     low, up = 0, len(L) - 1
