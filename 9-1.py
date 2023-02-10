@@ -57,32 +57,34 @@ class LinkedList:
 
 
     def popAfter(self, prev):
+        # prev가 마지막 node 일때
+        if prev.next == None: 
+            return None
+        
+        # prev가 마지막 node가 아니므로 curr 정의
         curr = prev.next
         
-        # prev가 마지막 node일때
-        if prev.next == None:
+        # 리스트 맨 끝의 node를 삭제할때
+        if curr.next == None: 
+            prev.next = None
             self.tail = prev
-            curr = None
-        
-        #리스트 맨끝의 node를 삭제할때
-        if curr.next == None:
-            self.tail = curr
-            self.nodeCount -= 1
-        
-        else:
+            
+        # 모두 아닌 정상인 경우
+        else :
             prev.next = curr.next
-            self.nodeCount -= 1
-        
-        return curr
+
+        # 데이터 처리 이후 nodeCount 조정 및 return
+        self.nodeCount -=1
+        return curr.data
             
     def popAt(self, pos):
         # pos가 리스트 범위 밖일때
-        if pos < 0 or pos > self.nodeCount:
+        if pos < 1 or pos > self.nodeCount:
             raise IndexError
         
         # pos가 범위 안일때 (1 < pos < nodeCount)
-        if pos > 1 and pos <= self.nodeCount:
-            return self.popAfter(pos)
+        prev = self.getAt(pos - 1)
+        return self.popAfter(prev)
             
 
 
